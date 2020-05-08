@@ -115,7 +115,11 @@ class AzHelper:
                 print(f"{count}. {option}")
 
             selectedNum = self.askInput(f"Application logging turned off. Please choose logging level number[1-{len(loggingOptions)}]: ")
-            action = self.az_cli(f"webapp log config --resource-group {self.resourceGroupName} --name {self.appServiceName} --application-logging --level {loggingOptions[int(selectedNum)-1]}")
+
+            if self.deploymentSlotName:
+                action = self.az_cli(f"webapp log config --resource-group {self.resourceGroupName} --name {self.appServiceName} --slot {self.deploymentSlotName} --application-logging --level {loggingOptions[int(selectedNum)-1]}")
+            else:
+                action = self.az_cli(f"webapp log config --resource-group {self.resourceGroupName} --name {self.appServiceName} --application-logging --level {loggingOptions[int(selectedNum)-1]}")
             
 
     def viewLog(self):

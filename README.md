@@ -1,4 +1,4 @@
-# Overview
+# Introduction
 This script is a tool that makes it easy to view the streamming logs of Azure App Service.
 
 Support Features
